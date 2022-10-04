@@ -1,0 +1,84 @@
+﻿@model WebMvcRazor.Models.Veiculos
+@using WebMvcRazor.Models
+@*@{
+    var veiculo = ViewBag.veiculo;
+}*@
+<h2>@ViewBag.Title.</h2>
+<h3 class="badge bg-secondary">@ViewBag.Message</h3>
+
+@using (Html.BeginForm("Salvar", "Veiculos", FormMethod.Post))
+{
+    @*<form action="/veiculos/salvar" method="post">*@
+    <div class="row col-md-offset-3">
+        <input type="hidden" id="id" value="@Model.Id" />
+        @*<label for="nome" class="col-sm-2 col-form-label text-right">Marca:</label>*@
+        @Html.LabelFor(Model => Model.Nome, new { @class = "col-sm-2 col-form-label text-right" })
+
+        <div class="col-sm-4">
+            @*<input type="text" class="form-control" id="nome" name="nome" value="@veiculo.Nome" />*@
+            @Html.TextBoxFor(Model => Model.Nome, new { @class = "form-control", @Value = Model.Nome })
+            @Html.ValidationMessageFor(Model => Model.Nome, "", new { @classe = "txt-danger" })
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        @*<label for="modelo" class="col-sm-2 col-form-label text-right">Modelo:</label>*@
+        @Html.LabelFor(Model => Model.Modelo, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @*<input type="text" class="form-control" id="modelo" name="modelo" value="@veiculo.Modelo" />*@
+            @Html.TextBoxFor(Model => Model.Modelo, new { @class = "form-control", @Value = Model.Modelo })
+            @Html.ValidationMessageFor(Model => Model.Modelo, "", new { @classe = "txt-danger" })
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        @*<label for="fabricacao" class="col-sm-2 col-form-label text-right">Ano:</label>*@
+        @Html.LabelFor(Model => Model.Fabricacao, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @*<input type="text" class="form-control" id="fabricacao" name="fabricacao" value="@veiculo.Fabricacao" />*@
+            @Html.TextBoxFor(Model => Model.Fabricacao, new { @class = "form-control", @Value = Model.Fabricacao })
+            @Html.ValidationMessageFor(Model => Model.Fabricacao, "", new { @classe = "txt-danger" })
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        @*<label for="cor" class="col-sm-2 col-form-label text-right">Cor:</label>*@
+        @Html.LabelFor(Model => Model.Cor, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @*<input type="text" class="form-control" id="cor" name="cor" value="@veiculo.Cor" />*@
+            @Html.TextBoxFor(Model => Model.Cor, new { @class = "form-control", @Value = Model.Cor })
+            @Html.ValidationMessageFor(Model => Model.Cor, "", new { @classe = "txt-danger" })
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        @*<label for="combustivel" class="col-sm-2 col-form-label text-right">Combustível:</label>*@
+        @Html.LabelFor(Model => Model.Combustivel, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @*<input type="text" class="form-control" id="combustivel" name="combustivel" value="@veiculo.Combustivel" />*@
+            @*@Html.TextBoxFor(Model => Model.Combustivel, new { @class = "form-control", @Value = veiculo.Combustivel })*@
+            @Html.DropDownListFor(Model => Model.Combustivel, Combustivel.Diesel.ToSelectList((int)Model.Combustivel), "Selecione um tipo de combustivel", new { @class = "form-control" })
+            @Html.ValidationMessageFor(Model => Model.Combustivel, "", new { @classe = "txt-danger" })
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        @*<label for="automatico" class="col-sm-2 col-form-label text-right">Automátiico:</label>*@
+        @Html.LabelFor(Model => Model.Automatico, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @*<input type="text" class="form-control" id="automatico" name="automatico" />*@
+            @Html.TextBoxFor(Model => Model.Automatico, new { @class = "form-control", @Value = Model.Automatico })
+            @Html.ValidationMessageFor(Model => Model.Automatico, "", new { @classe = "txt-danger" })
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        @*<label for="valor" class="col-sm-2 col-form-label text-right">Valor:</label>*@
+        @Html.LabelFor(Model => Model.Valor, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @*<input type="text" class="form-control" id="valor" name="valor" value="@veiculo.Valor" />*@
+            @Html.TextBoxFor(Model => Model.Valor, new { @class = "form-control", @Value = Model.Valor.ToString("#0.00") })
+            @Html.ValidationMessageFor(Model => Model.Valor, "", new { @classe = "txt-danger" })
+        </div>
+    </div>
+
+    <br />
+    <div class="button">
+        <button class="btn btn-primary" type="submit">Salvar</button>
+    </div>
+    @*</form>*@
+}
