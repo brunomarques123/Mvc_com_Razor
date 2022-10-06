@@ -14,23 +14,25 @@
         <th>Combustível</th>
         <th>Automático</th>
         <th>Valor</th>
+        <th>Proprietário</th>
         <th>Ação</th>
         <th>Ação</th>
     </tr>
     @foreach (var item in ViewBag.Lista)
     {
-<tr>
-    <td class="text-left">@item.Nome</td>
-    <td class="text-left">@item.Modelo</td>
-    <td>@item.Fabricacao</td>
-    <td>@item.Cor</td>
-    <td>@item.Combustivel</td>
-    <td>@item.Automatico</td>
-    <td>@item.Valor</td>
-    <td><a href="/Veiculos/Alterar/@item.Id">Alterar</a></td>
-    <td><a href="/Veiculos/Excluir/@item.Id">Excluir</a></td>
-</tr>
+    <tr>
+        <td class="text-left">@item.Nome</td>
+        <td class="text-left">@item.Modelo</td>
+        <td>@item.Fabricacao</td>
+        <td>@item.Cor</td>
+        <td>@item.Combustivel</td>
+        <td>@item.Automatico</td>
+        <td>@item.Valor</td>
+        <td><a href="/ProprietariosVeiculos/Index/@item.Proprietario.Id">@item.Proprietario.Nome</a></td>
+        <td><a href="/Veiculos/Alterar/@item.Id">Alterar</a></td>
+        <td><a href="/Veiculos/Excluir/@item.Id">Excluir</a></td>
+    </tr>
     }
 </table>
 
-<p>Use this area to provide additional information.</p>
+<p>Exercitando o MVC como RAZOR.</p>

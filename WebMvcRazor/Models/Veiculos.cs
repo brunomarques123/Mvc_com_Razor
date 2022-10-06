@@ -38,17 +38,22 @@ namespace WebMvcRazor.Models
         [Range(1, 5, ErrorMessage = "O Combustível deve estar entre {1} e {2}")]
         public Combustivel Combustivel { get; set; }
 
-        public bool Automatico { get; set; }
+
+        [Display(Name = "Automático:")]
+        [Required(ErrorMessage = "Informe se o câmbio e automático ou não.")]
+        public SimNao Automatico { get; set; }
 
         [Display(Name = "Valor:")]
         [Range(0.01, 9999999.99, ErrorMessage = "O Valor deve estar entre {1} e {2}")]
         public decimal Valor { get; set; }
 
+        public Proprietarios Proprietario { get; set; }
+
         public bool Ativo { get; set; }
 
         public Veiculos() { }
 
-        public Veiculos(int id, string nome, string modelo, short ano, short fabricacao, string cor, Combustivel combustivel, bool automatico, decimal valor, bool ativo)
+        public Veiculos(int id, string nome, string modelo, short ano, short fabricacao, string cor, Combustivel combustivel, SimNao automatico, decimal valor,int idProprietario,string nomeProprietario, bool ativo)
         {
             Id = id;
             Nome = nome;
@@ -60,12 +65,18 @@ namespace WebMvcRazor.Models
             Automatico = automatico;
             Valor = valor;
             Ativo = ativo;
+
+            var proprietario = new Proprietarios();
+            proprietario.Id = idProprietario;
+            proprietario.Nome = nomeProprietario;
+
+            this.Proprietario = proprietario;
         }
 
         public static List<Veiculos> GetCarros()
         {
             var listaCarros = new List<Veiculos>();
-            var sql = "SELECT * FROM tb_Veiculos";
+            var sql = "SELECT v.*, p.nome NomeProprietario FROM tb_Veiculos v INNER JOIN Proprietarios p ON v.Proprietario = p.Id";
 
             try
             {
@@ -88,8 +99,10 @@ namespace WebMvcRazor.Models
                                         Convert.ToInt16(dr["Fabricacao"]),
                                         dr["Cor"].ToString(),
                                         (Combustivel)Convert.ToByte(dr["Combustivel"]),
-                                        Convert.ToBoolean(dr["Automatico"]),
+                                        (SimNao)Convert.ToByte(dr["Automatico"]),
                                         Convert.ToDecimal(dr["Valor"]),
+                                        Convert.ToInt32(dr["Proprietario"]),
+                                        dr["NomeProprietario"].ToString(),
                                         Convert.ToBoolean(dr["Ativo"])
                                         ));
                                 }
@@ -190,7 +203,7 @@ namespace WebMvcRazor.Models
                                     Fabricacao = Convert.ToInt16(dr["fabricacao"]);
                                     Cor = dr["cor"].ToString();
                                     Combustivel = (Combustivel)Convert.ToByte(dr["combustivel"]);
-                                    Automatico = Convert.ToBoolean(dr["automatico"]);
+                                    Automatico = (SimNao) Convert.ToByte(dr["automatico"]);
                                     Valor = Convert.ToDecimal(dr["valor"]);
                                     Ativo = Convert.ToBoolean(dr["ativo"]);
 
@@ -219,5 +232,12 @@ namespace WebMvcRazor.Models
         Diesel = 4,
         Gás = 5,
         Eletrecidade = 6
+    }
+
+    public enum SimNao : int
+    {
+        Não = 0,
+        Sim = 1
+
     }
 }

@@ -9,12 +9,24 @@ namespace WebMvcRazor.Controllers
 {
     public class VeiculosController : Controller
     {
-        // GET: Veiculos
+       
         public ActionResult Adicionar()
         {
-            ViewBag.Title = "Veiculos";
-            ViewBag.Message = "Adicionar Veiculos";
-            return View();
+            HttpCookie cookie = Request.Cookies["AgenciaAuto"];
+
+            if (cookie != null)
+            {
+                ViewBag.Title = "Veiculos";
+                ViewBag.Message = "Adicionar Veiculos";
+                return View();
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
+
+           
         }
 
         public ActionResult Alterar(int id)

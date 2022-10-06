@@ -1,0 +1,33 @@
+﻿@model WebMvcRazor.ViewModel.ProprietariosVeiculosViewModel
+<h2>@ViewBag.Title</h2>
+<h3 class="badge bg-secondary">@ViewBag.Message @Model.Nome </h3>
+
+<div class="row">
+    <label>Id Proprietario: @Model.Id</label>
+</div>
+
+<table class="table table-sucess table-striped">
+    <tr>
+        <th>Marca  /  Fabricante</th>
+        <th>Modelo</th>
+        <th>Ano  <br />Fabricação</th>
+        <th>Combustivel</th>
+        <th>Automatico</th>
+        <th>Valor</th>
+    </tr>
+    @foreach (var veiculo in Model.Veiculos)
+    {
+        <tr>
+            <td class="text-left">@veiculo.Marca</td>
+            <td class="text-left">@veiculo.Modelo</td>
+            <td>@veiculo.Fabricacao</td>
+            <td>@veiculo.Cor</td>
+            <td>@veiculo.Combustivel</td>
+            <td>@veiculo.Automatico</td>
+            <td>@veiculo.Valor</td>
+        </tr>
+    }
+</table>
+
+
+

@@ -122,15 +122,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProprietariosVeiculosController.cs" />
     <Compile Include="Controllers\SairController.cs" />
     <Compile Include="Controllers\VeiculosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ExtensionMethods.cs" />
+    <Compile Include="Models\Proprietarios.cs" />
     <Compile Include="Models\Usuarios.cs" />
     <Compile Include="Models\Veiculos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ProprietariosVeiculosViewModel.cs" />
+    <Compile Include="ViewModel\VeiculosViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -172,6 +176,7 @@
     <Content Include="Views\Veiculos\Alterar.cshtml" />
     <Content Include="Views\Veiculos\Excluir.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\ProprietariosVeiculos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
